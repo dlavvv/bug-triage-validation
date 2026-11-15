@@ -2,7 +2,7 @@ name: Automated Issue Triage
 
 on:
   issues:
-    types: [opened]
+    types: [opened, edited]
 
 permissions:
   contents: read

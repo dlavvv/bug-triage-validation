@@ -55,9 +55,10 @@ headers = {
 }
 
 applied_label = pred_label if confidence >= 0.60 else "needs-triage"
+api_base = "https://" + f"[api.github.com/repos/](https://api.github.com/repos/){repo}/issues/{issue['number']}"
 
 requests.post(
-    f"[https://api.github.com/repos/](https://api.github.com/repos/){repo}/issues/{issue['number']}/labels",
+    f"{api_base}/labels",
     headers=headers,
     json={"labels": [applied_label]}
 )
@@ -76,7 +77,7 @@ comment = (
 )
 
 requests.post(
-    f"[https://api.github.com/repos/](https://api.github.com/repos/){repo}/issues/{issue['number']}/comments",
+    f"{api_base}/comments",
     headers=headers,
     json={"body": comment}
 )
