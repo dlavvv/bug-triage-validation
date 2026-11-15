@@ -57,11 +57,12 @@ headers = {
 applied_label = pred_label if confidence >= 0.60 else "needs-triage"
 api_base = "https://" + f"api.github.com/repos/){repo}/issues/{issue['number']}"
 
-requests.post(
+r_label = requests.post(
     f"{api_base}/labels",
     headers=headers,
     json={"labels": [applied_label]}
 )
+print("Label response:", r_label.status_code, r_label.text)
 
 # 5. Post a clean triage summary comment
 prob_lines = "\n".join(
@@ -76,8 +77,9 @@ comment = (
     f"{prob_lines}"
 )
 
-requests.post(
+r_comment = requests.post(
     f"{api_base}/comments",
     headers=headers,
     json={"body": comment}
 )
+print("Comment response:", r_comment.status_code, r_comment.text)
