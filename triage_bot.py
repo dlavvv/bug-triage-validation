@@ -55,7 +55,7 @@ headers = {
 }
 
 applied_label = pred_label if confidence >= 0.60 else "needs-triage"
-api_base = "https://" + f"[api.github.com/repos/](https://api.github.com/repos/){repo}/issues/{issue['number']}"
+api_base = "https://" + f"api.github.com/repos/){repo}/issues/{issue['number']}"
 
 requests.post(
     f"{api_base}/labels",
